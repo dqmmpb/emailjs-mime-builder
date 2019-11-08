@@ -296,6 +296,15 @@ describe('Mimebuilder', function () {
       expect(msg).to.contain('Subject: =?UTF-8?B?0J/RgNC40LLQtdGCINC4INC00L4g0YHQstC40LTQsNC90LjRjw==?=')
     })
 
+    it('should have utf-8 subject', function () {
+      const msg = new Mimebuilder('text/plain')
+        .setHeader({
+          subject: '中文 abc 测试'
+        }).build()
+
+      expect(msg).to.contain('Subject: =?UTF-8?B?5Lit5paHIGFiYyDmtYvor5U=?=')
+    })
+
     it('should setContent (arraybuffer)', function () {
       const arr = new Uint8Array(256)
       let msg = new Mimebuilder('text/plain')

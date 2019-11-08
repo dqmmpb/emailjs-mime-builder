@@ -136,6 +136,8 @@ export function encodeHeaderValue (key, value = '') {
 
       return value.join(' ').trim()
 
+    case 'Subject':
+      return mimeWordEncode((value || '').toString().replace(/\r?\n|\r/g, ' '), 'B')
     default:
       return mimeWordsEncode((value || '').toString().replace(/\r?\n|\r/g, ' '), 'B')
   }
